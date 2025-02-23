@@ -1,2 +1,2 @@
 # Pancreatic-Cancer-Detection-using-Deep-Learning
-This project focuses on early pancreatic cancer detection using CNN, involving preprocessing, segmentation, feature extraction, and classification to differentiate between benign and malignant tumors.
+The project leverages deep learning techniques to identify pancreatic cancer from medical imaging, such as CT scans or MRI images. It involves training convolutional neural networks (CNNs) on labeled datasets to detect and classify cancerous tissues with high accuracy. This AI-powered system aims to assist radiologists by providing faster and more precise diagnostics, improving early detection rates, and ultimately enhancing patient outcomes.
