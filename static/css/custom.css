@@ -1,0 +1,53 @@
+/* Custom styles to complement Bootstrap */
+.hero-section {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                url('https://images.unsplash.com/photo-1581595220921-eec2071e5159');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 100px 0;
+}
+
+.processing-step {
+    transition: transform 0.3s ease;
+}
+
+.processing-step:hover {
+    transform: scale(1.02);
+}
+
+.confidence-bar {
+    height: 20px;
+    background: var(--bs-success);
+    transition: width 0.5s ease-in-out;
+}
+
+.preview-container {
+    max-height: 400px;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.preview-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.loading-spinner {
+    width: 3rem;
+    height: 3rem;
+}
+
+/* Custom card styles */
+.info-card {
+    border-left: 4px solid var(--bs-primary);
+    background: rgba(var(--bs-primary-rgb), 0.1);
+}
+
+/* Footer styles */
+.footer {
+    background: var(--bs-dark);
+    padding: 2rem 0;
+    margin-top: 3rem;
+}

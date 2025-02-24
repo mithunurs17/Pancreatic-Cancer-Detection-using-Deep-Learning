@@ -1,0 +1,82 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4">Cancer Detection Process</h1>
+    
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Upload Medical Scan</h5>
+                    <form id="upload-form">
+                        <div class="mb-3">
+                            <label for="image-input" class="form-label">Choose CT or MRI scan image</label>
+                            <input type="file" class="form-control" id="image-input" accept="image/*" required>
+                        </div>
+                        <div class="preview-container mb-3">
+                            <img id="preview-image" class="preview-image d-none" alt="Preview">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Analyze Image</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">What to Expect</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Image preprocessing for enhanced clarity</li>
+                        <li class="list-group-item">Region segmentation to identify areas of interest</li>
+                        <li class="list-group-item">Feature extraction for detailed analysis</li>
+                        <li class="list-group-item">AI-powered classification of cancer type and stage</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="loading-spinner" class="text-center my-4 d-none">
+        <div class="spinner-border text-primary loading-spinner" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <p class="mt-2">Processing image...</p>
+    </div>
+
+    <div id="result-section" class="d-none">
+        <h2 class="mb-4">Analysis Results</h2>
+        
+        <div class="row mb-4">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Cancer Type</h5>
+                        <p id="cancer-type" class="card-text fs-4"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Stage</h5>
+                        <p id="cancer-stage" class="card-text fs-4"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Confidence</h5>
+                        <p id="confidence" class="card-text fs-4"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h3 class="mb-3">Processing Steps</h3>
+        <div id="processing-steps" class="row"></div>
+    </div>
+</div>
+{% endblock %}

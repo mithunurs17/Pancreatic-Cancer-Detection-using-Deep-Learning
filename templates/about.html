@@ -1,0 +1,80 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-8">
+            <h1 class="mb-4">About Pancreatic Cancer Detection</h1>
+            
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">What is Pancreatic Cancer?</h5>
+                    <p class="card-text">
+                        Pancreatic cancer is a form of cancer that begins in the tissues of the pancreas. It's particularly 
+                        challenging to detect early, making advanced imaging techniques crucial for diagnosis.
+                    </p>
+                </div>
+            </div>
+
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Types of Pancreatic Cancer</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <h6>Ductal Adenocarcinoma</h6>
+                            <p>The most common type, starting in the ducts of the pancreas</p>
+                        </li>
+                        <li class="list-group-item">
+                            <h6>Acinar Cell Carcinoma</h6>
+                            <p>Rare type starting in enzyme-producing cells</p>
+                        </li>
+                        <li class="list-group-item">
+                            <h6>Neuroendocrine Tumors</h6>
+                            <p>Affecting hormone-producing cells of the pancreas</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Our Technology</h5>
+                    <p class="card-text">
+                        We use advanced image processing and machine learning algorithms to analyze medical scans:
+                    </p>
+                    <ul>
+                        <li>Image preprocessing for enhanced clarity</li>
+                        <li>Segmentation algorithms to identify regions of interest</li>
+                        <li>Feature extraction for detailed analysis</li>
+                        <li>AI-powered classification for accurate diagnosis</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <img src="https://images.unsplash.com/photo-1504813184591-01572f98c85f" class="card-img-top" alt="Medical Professional">
+                <div class="card-body">
+                    <h5 class="card-title">Expert Support</h5>
+                    <p class="card-text">
+                        Our system is designed to assist medical professionals in making accurate diagnoses.
+                    </p>
+                </div>
+            </div>
+
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Important Resources</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-primary">Pancreatic Cancer Research</a></li>
+                        <li><a href="#" class="text-primary">Treatment Options</a></li>
+                        <li><a href="#" class="text-primary">Support Groups</a></li>
+                        <li><a href="#" class="text-primary">Clinical Trials</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

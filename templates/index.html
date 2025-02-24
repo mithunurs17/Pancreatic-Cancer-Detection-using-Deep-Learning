@@ -1,0 +1,81 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<section class="hero-section text-center">
+    <div class="container">
+        <h1 class="display-4">Advanced Pancreatic Cancer Detection</h1>
+        <p class="lead">Using cutting-edge image processing and AI for early detection</p>
+        <a href="/process" class="btn btn-primary btn-lg">Start Detection</a>
+    </div>
+</section>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <img src="https://images.unsplash.com/photo-1630531210843-d6f343ad1f90" class="card-img-top" alt="Medical Scanner">
+                <div class="card-body">
+                    <h5 class="card-title">Advanced Imaging</h5>
+                    <p class="card-text">State-of-the-art CT and MRI scan processing for accurate detection.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <img src="https://images.unsplash.com/photo-1579154341140-5aa3a445d43b" class="card-img-top" alt="Medical Professional">
+                <div class="card-body">
+                    <h5 class="card-title">Expert Analysis</h5>
+                    <p class="card-text">AI-powered analysis backed by medical expertise.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <img src="https://images.unsplash.com/photo-1589930585353-e1949dc408f9" class="card-img-top" alt="Medical Scan">
+                <div class="card-body">
+                    <h5 class="card-title">Detailed Results</h5>
+                    <p class="card-text">Comprehensive analysis with stage classification and confidence scores.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="mt-5">
+        <h2 class="text-center mb-4">How It Works</h2>
+        <div class="row">
+            <div class="col-md-3 text-center">
+                <div class="card bg-dark">
+                    <div class="card-body">
+                        <h5>1. Upload Scan</h5>
+                        <p>Upload your CT or MRI scan image</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 text-center">
+                <div class="card bg-dark">
+                    <div class="card-body">
+                        <h5>2. Processing</h5>
+                        <p>Advanced image processing algorithms analyze the scan</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 text-center">
+                <div class="card bg-dark">
+                    <div class="card-body">
+                        <h5>3. Detection</h5>
+                        <p>AI model detects potential cancer indicators</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 text-center">
+                <div class="card bg-dark">
+                    <div class="card-body">
+                        <h5>4. Results</h5>
+                        <p>Receive detailed analysis and classification</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}
