@@ -22,21 +22,28 @@ def extract_features(segmented):
     # Find contours
     contours, _ = cv2.findContours(segmented, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
-    # Extract meaningful features
+    # Extract comprehensive features
     features = {
         'num_contours': len(contours),
         'total_area': 0,
         'avg_circularity': 0,
         'max_contour_area': 0,
-        'contour_density': 0
+        'contour_density': 0,
+        'avg_intensity': np.mean(segmented),
+        'intensity_std': np.std(segmented),
+        'texture_uniformity': 0,
+        'edge_density': 0,
+        'shape_complexity': 0
     }
 
     image_area = segmented.shape[0] * segmented.shape[1]
+    total_perimeter = 0
 
     for contour in contours:
         area = cv2.contourArea(contour)
         perimeter = cv2.arcLength(contour, True)
         features['total_area'] += area
+        total_perimeter += perimeter
 
         if area > features['max_contour_area']:
             features['max_contour_area'] = area
@@ -46,9 +53,19 @@ def extract_features(segmented):
             circularity = 4 * np.pi * area / (perimeter * perimeter)
             features['avg_circularity'] += circularity
 
+            # Calculate shape complexity
+            complexity = perimeter * perimeter / (4 * np.pi * area)
+            features['shape_complexity'] += complexity
+
     if len(contours) > 0:
         features['avg_circularity'] /= len(contours)
+        features['shape_complexity'] /= len(contours)
         features['contour_density'] = features['total_area'] / image_area
+        features['edge_density'] = total_perimeter / image_area
+
+    # Calculate texture uniformity
+    if np.max(segmented) > 0:
+        features['texture_uniformity'] = np.sum(np.square(segmented / np.max(segmented)))
 
     # Create visualization image
     result = cv2.cvtColor(segmented, cv2.COLOR_GRAY2BGR)
@@ -57,25 +74,44 @@ def extract_features(segmented):
     return result, features
 
 def classify_cancer(features):
-    # Classification based on extracted features
+    # First check for healthy pancreas
+    if (features['contour_density'] < 0.1 and 
+        features['edge_density'] < 0.05 and 
+        features['texture_uniformity'] > 0.8):
+        return {
+            'cancer_type': 'Healthy Pancreas',
+            'cancer_stage': 'N/A',
+            'confidence': 0.92
+        }
+
+    # Check for no detected features
     if features['num_contours'] == 0:
         return {
-            'cancer_type': 'No abnormalities detected',
+            'cancer_type': 'Insufficient Features Detected',
             'cancer_stage': 'N/A',
             'confidence': 0.95
         }
 
-    # Analyze contour density
+    # Analysis based on multiple features
     density = features['contour_density']
     circularity = features['avg_circularity']
+    complexity = features['shape_complexity']
+    texture = features['texture_uniformity']
+    intensity = features['avg_intensity']
 
-    # Classification logic based on features
+    # Comprehensive classification logic
     if density > 0.4:
-        if circularity > 0.7:
+        if circularity > 0.7 and complexity < 2:
             return {
                 'cancer_type': 'Pancreatic Neuroendocrine Tumor',
                 'cancer_stage': 'Stage III',
                 'confidence': 0.85
+            }
+        elif texture < 0.3 and intensity > 150:
+            return {
+                'cancer_type': 'Mucinous Cystic Neoplasm',
+                'cancer_stage': 'Stage II',
+                'confidence': 0.83
             }
         else:
             return {
@@ -84,11 +120,17 @@ def classify_cancer(features):
                 'confidence': 0.88
             }
     elif density > 0.2:
-        if circularity > 0.6:
+        if circularity > 0.6 and complexity < 1.5:
             return {
                 'cancer_type': 'Acinar Cell Carcinoma',
                 'cancer_stage': 'Stage II',
                 'confidence': 0.82
+            }
+        elif texture > 0.6 and intensity < 100:
+            return {
+                'cancer_type': 'Intraductal Papillary Mucinous Neoplasm',
+                'cancer_stage': 'Stage I',
+                'confidence': 0.81
             }
         else:
             return {
@@ -97,11 +139,23 @@ def classify_cancer(features):
                 'confidence': 0.87
             }
     else:
-        if circularity > 0.8:
+        if circularity > 0.8 and complexity < 1.2:
             return {
                 'cancer_type': 'Solid Pseudopapillary Neoplasm',
                 'cancer_stage': 'Stage I',
                 'confidence': 0.80
+            }
+        elif texture < 0.4 and intensity > 120:
+            return {
+                'cancer_type': 'Serous Cystadenoma',
+                'cancer_stage': 'Early Stage',
+                'confidence': 0.79
+            }
+        elif complexity > 2.5:
+            return {
+                'cancer_type': 'Pancreatic Adenosquamous Carcinoma',
+                'cancer_stage': 'Stage II',
+                'confidence': 0.77
             }
         else:
             return {
